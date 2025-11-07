@@ -34,17 +34,35 @@ export function calculateStayCost({ startDate, endDate, basePrice }) {
 }
 
 // Currency helpers
-// NOTE: exchange rates are approximate. Update `USD_TO_KES` as needed.
-export const USD_TO_KES = 160 // assumed conversion: 1 USD = 160 KES
+// Current exchange rate as of Nov 2025
+export const USD_TO_KES = 153.50 // Current rate: 1 USD = 153.50 KES
 
 export function toCurrency(amountUSD, currency = 'USD') {
-  if (currency === 'USD') return { amount: Math.round(amountUSD), symbol: '$', code: 'USD' }
-  if (currency === 'KES') return { amount: Math.round(amountUSD * USD_TO_KES), symbol: 'KSh', code: 'KES' }
-  return { amount: Math.round(amountUSD), symbol: '$', code: 'USD' }
+  if (currency === 'USD') {
+    return { 
+      amount: Math.round(amountUSD), 
+      symbol: '$', 
+      code: 'USD',
+      formatted: (amount) => `$${amount.toLocaleString()}`
+    }
+  }
+  if (currency === 'KES') {
+    return { 
+      amount: Math.round(amountUSD * USD_TO_KES), 
+      symbol: 'KSh', 
+      code: 'KES',
+      formatted: (amount) => `KSh ${amount.toLocaleString()}`
+    }
+  }
+  return { 
+    amount: Math.round(amountUSD), 
+    symbol: '$', 
+    code: 'USD',
+    formatted: (amount) => `$${amount.toLocaleString()}`
+  }
 }
 
 export function formatPrice(amountUSD, currency = 'USD') {
-  const { amount, symbol } = toCurrency(amountUSD, currency)
-  // KES often shown as KSh or KES; use KSh prefix here
-  return `${symbol}${amount}`
+  const { amount, formatted } = toCurrency(amountUSD, currency)
+  return formatted(amount)
 }

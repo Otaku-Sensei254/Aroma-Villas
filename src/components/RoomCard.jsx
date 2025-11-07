@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion'
-import { useBooking } from '../context/BookingContext'
-import { formatPrice } from '../utils/pricing'
 
 export default function RoomCard({ room, index = 0 }) {
-  const { currency } = useBooking()
+  const tagList = room.highlights || room.features || []
   return (
     <motion.div
       className="room-card glass"
@@ -25,18 +23,20 @@ export default function RoomCard({ room, index = 0 }) {
       <div className="room-body">
         <h3>{room.name}</h3>
         <p>{room.description}</p>
-        <div style={{ marginTop: '8px', fontWeight: 700 }}>{formatPrice(room.basePrice, currency)}/night</div>
-        <ul className="tags">
-          {room.features.map((f) => (
-            <motion.li
-              key={f}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              {f}
-            </motion.li>
-          ))}
-        </ul>
+        <div style={{ marginTop: '8px', fontWeight: 600, color: 'var(--primary-light)' }}>{room.beds || 'Included in your villa stay'}</div>
+        {tagList.length > 0 && (
+          <ul className="tags">
+            {tagList.map((f) => (
+              <motion.li
+                key={f}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                {f}
+              </motion.li>
+            ))}
+          </ul>
+        )}
       </div>
     </motion.div>
   )

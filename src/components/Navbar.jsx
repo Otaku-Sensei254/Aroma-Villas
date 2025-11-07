@@ -37,11 +37,30 @@ export default function Navbar() {
               {n.label}
             </NavLink>
           ))}
-          <div className="nav-currency" style={{ marginLeft: '10px' }}>
-            <button className="currency-btn" onClick={toggleCurrency} aria-label="Toggle currency">
+          <motion.div className="nav-currency" style={{ marginLeft: '10px' }}>
+            <motion.button
+              className="currency-btn glass"
+              onClick={toggleCurrency}
+              aria-label="Toggle currency"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                color: 'var(--primary-light)',
+                fontSize: '0.9rem',
+                fontWeight: '500'
+              }}
+            >
+              <span style={{ fontSize: '1rem' }}>{currency === 'USD' ? '$' : 'KES'}</span>
               {currency}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </nav>
         <button
           className="mobile-menu-btn"
@@ -87,10 +106,35 @@ export default function Navbar() {
                 </NavLink>
               </motion.div>
             ))}
-            <motion.div style={{ padding: '12px' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <button className="currency-btn" onClick={() => toggleCurrency()} style={{ width: '100%' }}>
-                Toggle Currency
-              </button>
+            <motion.div 
+              style={{ padding: '12px' }} 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }}
+              transition={{ delay: navItems.length * 0.05 }}
+            >
+              <motion.button 
+                className="currency-btn glass"
+                onClick={toggleCurrency}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  color: 'var(--primary-light)',
+                  fontSize: '1rem',
+                  fontWeight: '500'
+                }}
+              >
+                <span style={{ fontSize: '1.1rem' }}>{currency === 'USD' ? '$' : 'KES'}</span>
+                Switch to {currency === 'USD' ? 'KES' : 'USD'}
+              </motion.button>
             </motion.div>
           </motion.nav>
         )}

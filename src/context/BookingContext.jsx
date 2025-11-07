@@ -4,24 +4,30 @@ const BookingContext = createContext()
 
 export function BookingProvider({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedRoomId, setSelectedRoomId] = useState(null)
   // currency: 'USD' or 'KES'
-  const [currency, setCurrency] = useState('USD')
+  const [currency, setCurrency] = useState(() => {
+    // Try to get stored currency preference, default to USD
+    const stored = localStorage.getItem('currency')
+    return stored || 'USD'
+  })
 
-  const toggleCurrency = () => setCurrency((c) => (c === 'USD' ? 'KES' : 'USD'))
+  const toggleCurrency = () => {
+    const newCurrency = currency === 'USD' ? 'KES' : 'USD'
+    setCurrency(newCurrency)
+    // Store the preference
+    localStorage.setItem('currency', newCurrency)
+  }
 
-  const openModal = (roomId = null) => {
-    setSelectedRoomId(roomId)
+  const openModal = () => {
     setIsModalOpen(true)
   }
 
   const closeModal = () => {
     setIsModalOpen(false)
-    setSelectedRoomId(null)
   }
 
   return (
-    <BookingContext.Provider value={{ isModalOpen, openModal, closeModal, selectedRoomId, currency, setCurrency, toggleCurrency }}>
+    <BookingContext.Provider value={{ isModalOpen, openModal, closeModal, currency, setCurrency, toggleCurrency }}>
       {children}
     </BookingContext.Provider>
   )
@@ -34,6 +40,7 @@ export function useBooking() {
   }
   return context
 }
+
 
 
 

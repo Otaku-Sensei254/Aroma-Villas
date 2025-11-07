@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import img1 from '../assets/images/bic20251101WhatsApp Image 2025-10-28 at 21.42.49.jpeg'
 import img2 from '../assets/images/bic20251101WhatsApp Image 2025-10-28 at 21.42.50 (1).jpeg'
 import img3 from '../assets/images/bic20251101WhatsApp Image 2025-10-28 at 21.42.50 (2).jpeg'
@@ -38,8 +39,75 @@ const images = [
 ]
 
 export default function Gallery() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <main className="main section">
+      <AnimatePresence>
+        {selectedImage !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'rgba(0, 0, 0, 0.9)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 1000,
+              padding: '20px',
+              cursor: 'pointer'
+            }}
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                position: 'relative',
+                maxWidth: '90%',
+                maxHeight: '90vh',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={images[selectedImage]}
+                alt={`Aroma Villas ${selectedImage + 1}`}
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '90vh',
+                  objectFit: 'contain',
+                  borderRadius: '8px'
+                }}
+              />
+              <button
+                onClick={() => setSelectedImage(null)}
+                style={{
+                  position: 'absolute',
+                  top: '-40px',
+                  right: '-40px',
+                  background: 'none',
+                  border: 'none',
+                  color: 'white',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  padding: '10px'
+                }}
+              >
+                ✕
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="container">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -69,6 +137,8 @@ export default function Gallery() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               whileHover={{ scale: 1.05, zIndex: 10 }}
+              style={{ cursor: 'pointer' }}
+              onClick={() => setSelectedImage(i)}
             />
           ))}
         </div>

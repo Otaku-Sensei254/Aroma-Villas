@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function Features() {
   const items = [
-    { title: 'Ocean Proximity', desc: 'Short walk to the beach — sunrise views from selected rooms.', emoji: '🌊' },
+    { title: 'Ocean Proximity', desc: 'Short walk to the beach with sunrise views from the master suite terrace.', emoji: '🌊' },
     { title: 'Relaxing Pool', desc: 'Private pool, sunbeds and shaded gazebo for afternoon chill.', emoji: '🏝️' },
     { title: 'Local Flavors', desc: 'Breakfast and local dishes available on request.', emoji: '🍽️' },
   ]

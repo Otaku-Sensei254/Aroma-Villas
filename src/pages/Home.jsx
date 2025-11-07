@@ -5,7 +5,7 @@ import Features from '../components/Features'
 import Stats from '../components/Stats'
 import BookingCTA from '../components/BookingCTA'
 import RoomCard from '../components/RoomCard'
-import { rooms } from '../data/rooms'
+import { villaDetails } from '../data/rooms'
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Our Rooms
+              Inside the Villa
             </motion.h2>
             <motion.p
               className="lead"
@@ -32,11 +32,11 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Five beautiful en-suite rooms — two with double beds — all with AC, fast internet, and access to the pool and gazebo.
+              Five beautifully appointed bedrooms and generous common areas are yours when you reserve Aroma Villas. Every space is included in your private stay.
             </motion.p>
             <div className="rooms-grid">
-              {rooms.slice(0, 3).map((r, i) => (
-                <RoomCard key={r.id} room={r} index={i} />
+              {villaDetails.rooms.slice(0, 3).map((suite, i) => (
+                <RoomCard key={suite.id} room={suite} index={i} />
               ))}
             </div>
             <motion.div
@@ -46,7 +46,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Link to="/rooms" className="btn-primary">View All Rooms</Link>
+              <Link to="/rooms" className="btn-primary">Explore the Villa</Link>
             </motion.div>
           </div>
         </section>

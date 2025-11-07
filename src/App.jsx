@@ -13,7 +13,7 @@ import Booking from './pages/Booking'
 import Contact from './pages/Contact'
 
 function AppContent() {
-  const { isModalOpen, closeModal, selectedRoomId } = useBooking()
+  const { isModalOpen, closeModal } = useBooking()
 
   return (
     <div>
@@ -29,7 +29,7 @@ function AppContent() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
-      <BookingModal isOpen={isModalOpen} onClose={closeModal} selectedRoomId={selectedRoomId} />
+      <BookingModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   )
 }

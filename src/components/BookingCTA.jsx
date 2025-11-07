@@ -32,7 +32,7 @@ export default function BookingCTA() {
               <button onClick={() => openModal()} className="btn-primary">
                 BOOK NOW
               </button>
-              <p>Easily reserve your tranquil beachside retreat at Aroma Villas. Our online booking system is simple and efficient.</p>
+              <p>Reserve the entire villa in a few clicks and enjoy exclusive access to every suite, the pool, and lush outdoor lounges.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -43,7 +43,7 @@ export default function BookingCTA() {
               <Link to="/contact" className="btn-secondary">
                 LEARN MORE
               </Link>
-              <p>Our secure payment facilities ensure your booking is protected. Enjoy peace of mind with encrypted transactions.</p>
+              <p>Discuss bespoke services with our team—from private chefs to curated excursions tailored for your group.</p>
             </motion.div>
           </div>
         </motion.div>
