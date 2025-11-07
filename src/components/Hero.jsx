@@ -100,7 +100,7 @@ export default function Hero() {
           }}
         >
           <img
-            src="/src/assets/images/couple3.webp"
+            src="https://shorturl.at/vKoIS"
             alt="Aroma Villas Interior"
             style={{
               width: '100%',
