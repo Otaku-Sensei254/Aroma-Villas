@@ -23,17 +23,60 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Inside the Villa
+              What this place offers
             </motion.h2>
-            <motion.p
-              className="lead"
+            
+            <div className="features-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              gap: '1rem',
+              margin: '2rem 0'
+            }}>
+              <div className="feature-item">5 bedrooms, 7 beds</div>
+              <div className="feature-item">5 bathrooms</div>
+              <div className="feature-item">Private pool</div>
+              <div className="feature-item">Free parking on premises</div>
+              <div className="feature-item">Fast wifi</div>
+              <div className="feature-item">Fully equipped kitchen</div>
+              <div className="feature-item">Smart TV</div>
+              <div className="feature-item">Air conditioning</div>
+              <div className="feature-item">Ceiling fans</div>
+              <div className="feature-item">500m to Diani Beach</div>
+              <div className="feature-item">Car recommended</div>
+              <div className="feature-item">Self check-in</div>
+              <div className="feature-item">Carbon monoxide alarm</div>
+              <div className="feature-item">Fire extinguisher</div>
+              <div className="feature-item">First aid kit</div>
+              <div className="feature-item">No smoking</div>
+            </div>
+
+            <motion.div 
+              className="villa-description" 
+              style={{
+                background: 'var(--surface)',
+                padding: '2rem',
+                borderRadius: '12px',
+                boxShadow: 'var(--shadow-sm)',
+                margin: '2rem 0'
+              }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Five beautifully appointed bedrooms and generous common areas are yours when you reserve Aroma Villas. Every space is included in your private stay.
-            </motion.p>
+              <h2>About this villa</h2>
+              <p>
+                Escape to our luxurious 5-bedroom villa in Diani, just 700m from the pristine beach. 
+                Set in a private compound with manicured lawns, a sparkling pool, and spacious living 
+                areas, this elegant retreat is perfect for families and groups seeking comfort and style.
+              </p>
+              <p>
+                The villa features modern amenities including air conditioning, high-speed WiFi, and 
+                a fully equipped kitchen. Relax in the outdoor lounge area or take a short walk to 
+                the beach for a day of sun and surf.
+              </p>
+            </motion.div>
+            
             <div className="rooms-grid">
               {villaDetails.rooms.slice(0, 3).map((suite, i) => (
                 <RoomCard key={suite.id} room={suite} index={i} />

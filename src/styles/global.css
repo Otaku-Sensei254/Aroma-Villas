@@ -147,13 +147,56 @@ nav {
   width: 100%;
   height: 100%;
   z-index: 0;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-bg img {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: cover;
+  object-position: center;
   opacity: 0.9;
+  transition: transform 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .hero-bg img {
+    object-position: center center;
+    object-fit: contain;
+    width: auto;
+    max-width: none;
+    height: 100%;
+    transform: none;
+  }
+  
+  .hero {
+    min-height: 60vh;
+  }
+  
+  .hero-content {
+    justify-items: center;
+  }
+  
+  .hero-text {
+    background: rgba(15, 23, 42, 0.8);
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .hero-text {
@@ -839,11 +882,23 @@ label {
   
   .hero {
     min-height: 80vh;
-    padding: 100px 20px 60px;
+    padding: 80px 20px 40px;
+  }
+  
+  .hero-content {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
   }
   
   .hero-text {
-    padding: 2rem;
+    width: 100%;
+    padding: 1.5rem;
+    margin: 0 auto;
+  }
+  
+  .hero-bg img {
+    object-fit: cover;
+    object-position: center 30%;
   }
   
   .hero-title {
@@ -1897,6 +1952,140 @@ blockquote {
 .booking-modal-actions .btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Villa Features */
+.villa-features {
+  padding: 2rem;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  margin: 2rem 0;
+}
+
+.villa-features h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.feature-icon {
+  color: var(--primary);
+  font-size: 1.25rem;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Booking Availability */
+.booking-availability {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  margin: 2rem 0;
+}
+
+.booking-availability h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.date-picker-wrapper {
+  margin: 1rem 0;
+}
+
+.booking-status {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.booking-status.success {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.booking-status.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* Date Picker Customization */
+.react-datepicker {
+  font-family: inherit;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.react-datepicker__header {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 1rem 0;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: white;
+  font-weight: 500;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range {
+  background-color: var(--primary);
+  color: white;
+}
+
+.react-datepicker__day--disabled {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.react-datepicker__day--keyboard-selected:not(.react-datepicker__day--in-range) {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .react-datepicker {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 /* Responsive for Booking Modal */
